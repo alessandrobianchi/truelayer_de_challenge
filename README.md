@@ -3,6 +3,27 @@ truelayer_de_challenge
 
 Data Engineer Challenge v1.04 from TrueLayer
 
+
+# Ordine comandi
+
+- Bash script per scaricare i dataset dentro alla folder data/raw
+- Script Python (runnato da Docker container, con volume per salvare l'output) che legge i file con chunksize di Pandas e produce un file di output in csv
+- Runnare da terminale locale mkdir data/volume/ 
+- Docker compose per mandare su Postgres con init script per creare la tabella sql già preconfigurata
+- cp data/processed/nomefile.csv data/volume/pgdata
+- docker-compose run db bash 
+- psql -h db -U postgres
+- password: postgres
+- \copy movie_data (tutte le colonne) FROM '/var/lib/postgresql/data/pgdata/nomefile.csv' CSV HEADER;
+
+
+
+1. Docker compose up
+2. Copia file nel path
+3. 
+
+
+
 Project Organization
 ------------
 
