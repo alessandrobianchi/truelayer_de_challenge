@@ -3,6 +3,10 @@ truelayer_de_challenge
 
 Data Engineer Challenge v1.04 from TrueLayer
 
+# Processare file
+Per trovare i top N del dataframe https://docs.dask.org/en/latest/generated/dask.dataframe.DataFrame.nlargest.html
+
+
 
 # Ordine comandi
 
@@ -14,7 +18,7 @@ Data Engineer Challenge v1.04 from TrueLayer
 - docker-compose run db bash 
 - psql -h db -U postgres
 - password: postgres
-- \copy movie_data (tutte le colonne) FROM '/var/lib/postgresql/data/pgdata/nomefile.csv' CSV HEADER;
+- \copy movies (id, title, budget, year, revenue, rating, ratio, production_company, wikipedia_page, wikipedia_abstract) FROM '/var/lib/postgresql/data/pgdata/top_n_movies.csv' CSV HEADER;
 
 
 
