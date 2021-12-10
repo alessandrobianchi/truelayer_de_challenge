@@ -87,3 +87,7 @@ target/
 
 # Mypy cache
 .mypy_cache/
+
+# Docker volumes
+databases/elasticsearch/volumes/
+databases/postgresql/volume/
