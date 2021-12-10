@@ -6,6 +6,14 @@ Data Engineer Challenge v1.04 from TrueLayer
 # Processare file
 Per trovare i top N del dataframe https://docs.dask.org/en/latest/generated/dask.dataframe.DataFrame.nlargest.html
 
+1 - git clone <repo>
+2 - make download_data
+3 - start ES docker-compose
+4 - run python script make_dataset.py
+5 - start postgres docker-compose
+6 - copy file output da terminale nel volume
+7 - docker-compose run db bash
+8 - script vari dentro psql
 
 
 # Ordine comandi

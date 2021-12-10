@@ -1,4 +1,4 @@
-.PHONY: clean data lint requirements
+.PHONY: clean_python data lint requirements clean_volumes set_volumes download_data
 
 #################################################################################
 # GLOBALS                                                                       #
@@ -28,10 +28,30 @@ requirements: test_environment
 data: requirements
 	$(PYTHON_INTERPRETER) src/data/make_dataset.py data/raw data/processed
 
+## Download data from the Web  TODO: aggiornare Kaggle
+download_data:
+	wget https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-abstract.xml.gz -O data/raw/enwiki-latest-abstract.xml.gz
+	# wget https://www.kaggle.com/rounakbanik/the-movies-dataset/version/7#movies_metadata.csv -O data/raw/movies_metadata.csv
+	pushd data/raw
+	gzip -d enwiki-latest-abstract.xml.gz
+	# TODO: unzipping Kaggle
+	popd
+
 ## Delete all compiled Python files
-clean:
+clean_python:
 	find . -type f -name "*.py[co]" -delete
 	find . -type d -name "__pycache__" -delete
+
+## Clear all data stored inside the Docker Volumes
+clean_volumes:
+	rm -rf databases/elasticsearch/volume
+	rm -rf databases/postgresql/volume
+
+## Set up directories that will be mounted as Docker volumes
+set_volumes: clean_volumes
+	mkdir databases/elasticsearch/volume
+	mkdir databases/postgresql/volume
+	# mkdir databases/postgresql/volume/pgdata
 
 ## Lint using flake8
 lint:
